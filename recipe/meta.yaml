@@ -1,4 +1,4 @@
-{% set version = "2.38.0" %}
+{% set version = "2.40.1" %}
 {% set win_version = version[:-2] %}
 
 package:
@@ -7,44 +7,33 @@ package:
 
 source:
   fn:  graphviz-{{ version }}.tar.gz  # [unix]
-  url: http://www.graphviz.org/pub/graphviz/stable/SOURCES/graphviz-{{ version }}.tar.gz  # [unix]
-  md5: 5b6a829b2ac94efcd5fa3c223ed6d3ae  # [unix]
+  url: https://graphviz.gitlab.io/pub/graphviz/stable/SOURCES/graphviz.tar.gz
+  md5: 4ea6fd64603536406166600bcc296fc8  # [unix]
 
   fn:  graphviz-{{ win_version }}.zip  # [win]
   url: http://www.graphviz.org/pub/graphviz/stable/windows/graphviz-{{ win_version }}.zip  # [win]
   md5: d028f49e047e2a25fdb7c0aa323a3945  # [win]
 
-  patches:
-    # This patch was submitted upstream:
-    # http://www.graphviz.org/mantisbt/view.php?id=2448
-    - gvconfig_libdir.patch  # [unix]
-
 build:
-  number: 7
+  number: 0
   detect_binary_files_with_prefix: True  # [unix]
 
 requirements:
   build:
-    - cairo 1.14.*             # [linux]
-    - expat 2.2.*                   # [linux]
-    - libpng >=1.6.32,<1.6.35  # [unix]
-    - libtiff >=4.0.8,<4.0.10   # [unix]
-    - libtool                  # [linux]
-    - freetype 2.8.1             # [unix]
-    - jpeg 9*                  # [unix]
-    - pango 1.40.*             # [linux]
-    - pkg-config               # [osx]
-    - zlib 1.2.11               # [unix]
-  run:
-    - cairo 1.14.*             # [linux]
-    - expat 2.2.*                   # [linux]
-    - libpng >=1.6.32,<1.6.35  # [unix]
-    - libtiff >=4.0.8,<4.0.10   # [unix]
-    - libtool                  # [linux]
-    - freetype 2.8.1             # [unix]
-    - jpeg 9*                  # [unix]
-    - pango 1.40.*             # [linux]
-    - zlib 1.2.11               # [unix]
+    - {{ compiler('c') }}
+    # - libtool     # [unix]
+    # - autoconf
+    # - automake
+    - pkg-config  # [unix]
+  host:
+    - cairo       # [unix]
+    - expat       # [unix]
+    - libpng      # [unix]
+    - libtiff     # [unix]
+    - freetype    # [unix]
+    - jpeg        # [unix]
+    - pango       # [unix]
+    - zlib        # [unix]
 
 test:
   commands:
@@ -73,3 +62,4 @@ extra:
     - jakirkham
     - ccordoba12
     - ocefpaf
+    - mingwandroid
