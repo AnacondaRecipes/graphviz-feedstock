@@ -21,6 +21,10 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ cdt('libxrender-devel') }}  # [linux]
+    - {{ cdt('libxcb') }}            # [linux]
+    - {{ cdt('libxau-devel') }}      # [linux]
+    - {{ cdt('libxext') }}           # [linux]
     # - libtool     # [unix]
     # - autoconf
     # - automake
@@ -28,12 +32,23 @@ requirements:
   host:
     - cairo       # [unix]
     - expat       # [unix]
-    - glib        # [osx]
+    - fontconfig  # [unix]
+    - freetype    # [unix]
+    - fribidi     # [unix]
+    - glib        # [unix]
+    - graphite2   # [unix]
+    - harfbuzz    # [unix]
+    - icu         # [unix]
+    - jpeg        # [unix]
+    - libffi      # [unix]
     - libpng      # [unix]
     - libtiff     # [unix]
-    - freetype    # [unix]
-    - jpeg        # [unix]
+    - libuuid     # [linux]
+    - libxml2     # [unix]
     - pango       # [unix]
+    - pcre        # [unix]
+    - pixman      # [unix]
+    - xz          # [unix]
     - zlib        # [unix]
 
 test:
