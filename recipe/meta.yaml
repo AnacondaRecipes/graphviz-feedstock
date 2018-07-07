@@ -25,6 +25,8 @@ requirements:
     - {{ cdt('libxcb') }}            # [linux]
     - {{ cdt('libxau-devel') }}      # [linux]
     - {{ cdt('libxext') }}           # [linux]
+    - {{ cdt('libx11-devel') }}      # [linux and not ppc64le]
+    - {{ cdt('libxext-devel') }}     # [linux and not ppc64le]
     # - libtool     # [unix]
     # - autoconf
     # - automake
