@@ -1,5 +1,5 @@
-{% set version = "2.40.1" %}
-{% set win_version = version[:-2] %}
+{% set version = "2.40.1" %}  # [not win]
+{% set version = "2.38" %}    # [win]
 
 package:
   name: graphviz
@@ -10,8 +10,8 @@ source:
   url: https://graphviz.gitlab.io/pub/graphviz/stable/SOURCES/graphviz.tar.gz
   md5: 4ea6fd64603536406166600bcc296fc8  # [unix]
 
-  fn:  graphviz-{{ win_version }}.zip  # [win]
-  url: http://www.graphviz.org/pub/graphviz/stable/windows/graphviz-{{ win_version }}.zip  # [win]
+  fn:  graphviz-{{ version }}.zip  # [win]
+  url: https://graphviz.gitlab.io/_pages/Download/windows/graphviz-{{ version }}.zip  # [win]
   md5: d028f49e047e2a25fdb7c0aa323a3945  # [win]
 
 build:
