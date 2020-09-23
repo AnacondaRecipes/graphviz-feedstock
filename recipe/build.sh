@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Remove any .la files that can break the build, they are un-needed
+rm -f $PREFIX/lib/*.la
+rm -f $PREFIX/lib/*/*.la
+
 if [[ ${target_platform} == osx-64 ]]; then
     export OBJC=$CC
     ./configure --prefix=$PREFIX \
