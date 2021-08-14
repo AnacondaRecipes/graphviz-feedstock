@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Get an updated config.sub and config.guess
+cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./config
+cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./libltdl/config
+
 # Remove any .la files that can break the build, they are un-needed
 rm -f $PREFIX/lib/*.la
 rm -f $PREFIX/lib/*/*.la

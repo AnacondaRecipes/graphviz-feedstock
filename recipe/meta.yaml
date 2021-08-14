@@ -29,7 +29,7 @@ requirements:
     - {{ cdt('libxext-devel') }}     # [linux and not ppc64le]
     # Needed to enable pango/cairo support on s390x
     - {{ cdt('xorg-x11-proto-devel') }}   # [linux and s390x]
-    # - libtool     # [unix]
+    - libtool     # [unix]
     # - autoconf
     # - automake
     - make        # [unix]
