@@ -1,35 +1,42 @@
 #!/bin/bash
+set -x
 
-# Get an updated config.sub and config.guess
-cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./config
-cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* ./libltdl/config
+./autogen.sh
 
-# Remove any .la files that can break the build, they are un-needed
-rm -f $PREFIX/lib/*.la
-rm -f $PREFIX/lib/*/*.la
+# remove libtool files
+find $PREFIX -name '*.la' -delete
 
-if [[ ${target_platform} == osx-64 ]]; then
-    export OBJC=$CC
-    ./configure --prefix=$PREFIX \
-                --with-quartz \
-                --disable-debug \
-                --disable-java \
-                --disable-php \
-                --disable-perl \
-                --disable-tcl \
-                --without-x \
-                --without-qt \
-                --without-gtk
-else
-    ./configure --prefix=$PREFIX \
-                --disable-debug \
-                --disable-java \
-                --disable-php \
-                --disable-perl \
-                --disable-tcl \
-                --without-x \
-                --without-qt \
-                --without-gtk
+declare -a _xtra_config_flags
+
+if [[ ${target_platform} =~ .*osx.* ]]; then
+    export OBJC="${CC}"
+    _xtra_config_flags+=(--with-quartz)
+fi
+
+./configure --prefix=$PREFIX \
+            --disable-debug \
+            --disable-java \
+            --disable-php \
+            --disable-perl \
+            --disable-tcl \
+            --enable-ltdl \
+            --without-x \
+            --without-qt \
+            --without-gtk \
+            --with-gts=yes \
+            --with-gdk=yes \
+            --with-rsvg=yes \
+            --with-expat=yes \
+            --with-libgd=yes \
+            --with-freetype2=yes \
+            --with-fontconfig=yes \
+            --with-pangocairo=yes \
+            --with-gdk-pixbuf=yes \
+            "${_xtra_config_flags[@]}"
+
+if [ $CONDA_BUILD_CROSS_COMPILATION = 1 ] && [ "${target_platform}" = "osx-arm64" ]; then
+    sed -i.bak 's/HOSTCC/CC_FOR_BUILD/g' $SRC_DIR/lib/gvpr/Makefile.am
+    sed -i.bak '/dot$(EXEEXT) -c/d' $SRC_DIR/cmd/dot/Makefile.am
 fi
 
 make
@@ -38,4 +45,7 @@ make
 # make check
 make install
 
-dot -c
+# Configure plugins
+if [ $CONDA_BUILD_CROSS_COMPILATION != 1 ]; then
+    $PREFIX/bin/dot -c
+fi

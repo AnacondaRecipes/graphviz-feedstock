@@ -1,36 +1,32 @@
-:: Remove unneeded library stubs
-rd /S /Q %SRC_DIR%\include
-rd /S /Q %SRC_DIR%\lib
-rd /S /Q %SRC_DIR%\share\man
+:: Primary build
+set _gz_builddir=%SRC_DIR%\build
+cmake -S%SRC_DIR% ^
+      -GNinja ^
+      -B%_gz_builddir% ^
+      -DCMAKE_BUILD_TYPE=Release ^
+      -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+      -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX%;%LIBRARY_LIB% ^
+      -DLTDL_INCLUDE_DIR=%SRC_DIR%\ltdl_compat
 if errorlevel 1 exit 1
 
-mkdir %SRC_DIR%\share\doc\graphviz
-move %SRC_DIR%\share\graphviz\doc %SRC_DIR%\share\doc\graphviz
+cmake --build build -- install
 if errorlevel 1 exit 1
 
-move %SRC_DIR%\bin %SRC_DIR%\graphviz
+
+:: Reinstall into a temporary directory to gather names of execs
+set _gz_installdir=%SRC_DIR%\install
+cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=%_gz_installdir% %_gz_builddir%
 if errorlevel 1 exit 1
 
-xcopy /S %SRC_DIR% %LIBRARY_PREFIX%
+cmake --build %_gz_builddir% -- install
 if errorlevel 1 exit 1
 
-:: Create a graphviz folder in %LIBRARY_BIN% to avoid dll
-:: clashes with other packages (e.g. Qt4)
-mkdir %LIBRARY_BIN%
-move %LIBRARY_PREFIX%\graphviz %LIBRARY_BIN%\graphviz
-if errorlevel 1 exit 1
 
-del %LIBRARY_PREFIX%\bld.bat
-if errorlevel 1 exit 1
-
-:: Create bat links for all exe files in %LIBRARY_BIN%\graphviz
-cd %LIBRARY_BIN%
-for /r "%LIBRARY_BIN%\graphviz" %%f in (*.exe) do (
+:: Setup wrappers for backwards compatibility
+if not exist "%PREFIX%\Scripts" mkdir %PREFIX%\Scripts
+cd %PREFIX%\Scripts
+for /r "%_gz_installdir%\bin" %%f in (*.exe) do (
     echo @echo off > %%~nf.bat
-    echo %%~dp0.\graphviz\%%~nf.exe %%* >> %%~nf.bat
+    echo "%%~dp0.\..\Library\bin\%%~nf.exe" %%* >> %%~nf.bat
     if errorlevel 1 exit 1
 )
-
-:: Place license somewhere conda-build can find it easily
-copy %LIBRARY_PREFIX%\share\doc\graphviz\doc\COPYING %SRC_DIR%
-if errorlevel 1 exit 1
