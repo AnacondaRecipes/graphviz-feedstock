@@ -41,7 +41,9 @@ requirements:
     - m2-flex                                             # [win]
     - m2-bison                                            # [win]
     - perl                                                # [win]
-  host:
+    - patch       # [not win]
+    - m2-patch    # [win]
+   host:
     # --with-pangocairo=yes
     - cairo
     # --with-expat=yes
