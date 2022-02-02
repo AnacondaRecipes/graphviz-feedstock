@@ -43,7 +43,7 @@ requirements:
     - perl                                                # [win]
     - patch       # [not win]
     - m2-patch    # [win]
-   host:
+  host:
     # --with-pangocairo=yes
     - cairo
     # --with-expat=yes
