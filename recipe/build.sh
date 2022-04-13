@@ -1,6 +1,5 @@
 #!/bin/bash
-set -x
-
+set -xe
 ./autogen.sh
 
 # remove libtool files
@@ -20,12 +19,9 @@ fi
             --disable-perl \
             --disable-tcl \
             --enable-ltdl \
-            --without-x \
-            --without-qt \
-            --without-gtk \
+            --with-x \
             --with-gts=yes \
             --with-gdk=yes \
-            --with-rsvg=yes \
             --with-expat=yes \
             --with-libgd=yes \
             --with-freetype2=yes \
@@ -34,10 +30,6 @@ fi
             --with-gdk-pixbuf=yes \
             "${_xtra_config_flags[@]}"
 
-if [ $CONDA_BUILD_CROSS_COMPILATION = 1 ] && [ "${target_platform}" = "osx-arm64" ]; then
-    sed -i.bak 's/HOSTCC/CC_FOR_BUILD/g' $SRC_DIR/lib/gvpr/Makefile.am
-    sed -i.bak '/dot$(EXEEXT) -c/d' $SRC_DIR/cmd/dot/Makefile.am
-fi
 
 make
 # This is failing for rtest.
