@@ -46,6 +46,4 @@ make
 make install
 
 # Configure plugins
-if [ $CONDA_BUILD_CROSS_COMPILATION != 1 ]; then
-    $PREFIX/bin/dot -c
-fi
+$PREFIX/bin/dot -c

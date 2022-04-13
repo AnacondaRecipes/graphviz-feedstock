@@ -5,16 +5,17 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/3.0.0/graphviz-3.0.0.tar.gz
-    sha256: e6f0ac0b975bcadc000559d5a767111737d0a03919dfc0e47ce6450c877c7834
+  - url: https://gitlab.com/graphviz/graphviz/-/archive/3.0.0/graphviz-3.0.0.tar.gz
+    #  - url: https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/3.0.0/graphviz-3.0.0.tar.gz
+    sha256: 59931082a3638139e06c296b96e860a9d338432af06f7f57a6ad8da5cbf465c7
     patches:
-      - patches/0001-Rename-vpsc-block.h-vpsc-v_block.h.patch
-      - patches/0002-Add-CMake-option-INSTALL_DEPENDENCY_DLLS-default-off.patch
-      - patches/0003-Specify-dependency-on-expat-for-lib-common.patch
-      - patches/0004-Always-link-to-getopt-on-Windows.patch
-      - patches/0005-Remove-requirement-of-hard-coded-DLLs-in-PATH.patch
-      - patches/0006-Add-support-for-GTS-in-CMake-builds.patch
-      - patches/0007-Fix-logic-for-finding-harfbuzz.patch
+      # - patches/0001-Rename-vpsc-block.h-vpsc-v_block.h.patch
+      # - patches/0002-Add-CMake-option-INSTALL_DEPENDENCY_DLLS-default-off.patch # [win]
+      # - patches/0003-Specify-dependency-on-expat-for-lib-common.patch
+      # - patches/0004-Always-link-to-getopt-on-Windows.patch # [win]
+      # - patches/0005-Remove-requirement-of-hard-coded-DLLs-in-PATH.patch # [win]
+      # - patches/0006-Add-support-for-GTS-in-CMake-builds.patch
+      # - patches/0007-Fix-logic-for-finding-harfbuzz.patch
     # Prefer header only compat layer, even though m2-libtool might work
   - url: https://gitlab.com/graphviz/graphviz-windows-dependencies/-/raw/c7eafb3c/x64/include/ltdl.h
     sha256: a3cf376bca2965634ba05926d4065a46331e71c487d84a4c6aceb795e9458bfd
@@ -61,9 +62,8 @@ requirements:
     # pangocairo requires glib
     - glib
     # --with-libgd=yes
-    - libgd
+    - libgd >2.2
     # --with-rsvg=yes
-    - librsvg                                             # [unix]
     # --enable-ltdl
     - libtool                                             # [unix]
     # --with-webp=yes
@@ -82,9 +82,8 @@ requirements:
     - expat                                               # [unix]
     - gts
     - gtk2                                                # [unix]
-    - libgd
+    - libgd >2.2
     - glib
-    - librsvg                                             # [unix]
     - libtool                                             # [unix]
     - libwebp-base                                        # [unix]
     - pango
