@@ -9,6 +9,7 @@ source:
     #  - url: https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/3.0.0/graphviz-3.0.0.tar.gz
     sha256: 59931082a3638139e06c296b96e860a9d338432af06f7f57a6ad8da5cbf465c7
     patches:
+      - patches/getopt_windows_build_fix.patch
       # - patches/0001-Rename-vpsc-block.h-vpsc-v_block.h.patch
       # - patches/0002-Add-CMake-option-INSTALL_DEPENDENCY_DLLS-default-off.patch # [win]
       # - patches/0003-Specify-dependency-on-expat-for-lib-common.patch
@@ -48,12 +49,14 @@ requirements:
     - m2-gawk                                             # [win]
     - m2-flex                                             # [win]
     - m2-bison                                            # [win]
+    - m2-gzip # [win]
     - perl                                                # [win]
-    - patch
+    - patch                                               # [linux]
+    - m2-patch                                            # [win]
     - git
     - libxcb                                              # [linux]
-    - {{ cdt('libxrender')  }}
-    - {{ cdt('libxrender-devel')  }}
+    - {{ cdt('libxrender')  }}                            # [linux]
+    - {{ cdt('libxrender-devel')  }}                      # [linux]
     - {{ cdt('xorg-x11-proto-devel') }}                   # [linux]
     - {{ cdt('libx11-devel') }}                           # [linux]
     - {{ cdt('libxext') }}                                # [linux]
@@ -67,7 +70,6 @@ requirements:
     # --with-freetype2
     - freetype
     # --with-fontconfig=yes
-    - fontconfig                                          # [unix]
     # --with-gts=yes
     - gts
     # --with-gdk-pixbuf=yes
@@ -78,37 +80,19 @@ requirements:
     # --with-webp=yes
     - libwebp-base                                        # [unix]
     # --with-pangocairo=yes
-    - pango ==1.48
-    - cairo ==1.16
+    - pango #[not win]
+    - cairo
     # default requirement
     - zlib                                                # [unix]
-    - getopt-win32                                        # [win]
     - libtiff
     - libpng
     # --with-libgd=yes
-    - libgd >2.2
+    - libgd >2.2 # [not win]
     - libxcb                                              # [linux]
-    - librsvg
+    - librsvg #[linux]
     - devil
-  run:
-    - librsvg
-    - expat
-    - freetype
-    - fontconfig                                         # [unix]
-    - gts
-    - gdk-pixbuf                                         # [unix]
-    - glib
-    - libtool                                            # [unix]
-    - libwebp-base                                       # [unix]
-    - pango >=1.48
-    - cairo >=1.16
-    - zlib                                               # [unix]
-    - getopt-win32                                       # [win]
-    - libtiff
-    - libpng
-    - libgd >2.2
-    - libxcb                                             # [linux]
-    - devil
+    - getopt-win32
+
 test:
   files:
     - sample.dot
