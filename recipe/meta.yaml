@@ -1,4 +1,4 @@
-{% set version = "2.48.0" %}
+{% set version = "2.50.0" %}
 
 package:
   name: graphviz
@@ -6,15 +6,12 @@ package:
 
 source:
   - url: https://gitlab.com/graphviz/graphviz/-/archive/{{ version }}/graphviz-{{ version }}.tar.gz
-    sha256: 85a2beca9a1a58da3ba7237a63aad2e612f7e3afa990591a9971d2077f1f5937
+    sha256: afa48581f764a35e148909cc96a0308ec2356b5225b64af12492f3392f20ef1c
     patches:
-      - patches/0001-Rename-vpsc-block.h-vpsc-v_block.h.patch
-      - patches/0002-Add-CMake-option-INSTALL_DEPENDENCY_DLLS-default-off.patch
-      - patches/0003-Specify-dependency-on-expat-for-lib-common.patch
-      - patches/0004-Always-link-to-getopt-on-Windows.patch
-      - patches/0005-Remove-requirement-of-hard-coded-DLLs-in-PATH.patch
-      - patches/0006-Add-support-for-GTS-in-CMake-builds.patch
-      - patches/0007-Fix-logic-for-finding-harfbuzz.patch
+      - patches/0001-Always-link-to-getopt-on-Windows.patch
+      - patches/0002-Remove-requirement-of-hard-coded-DLLs-in-PATH.patch
+      - patches/0003-Add-support-for-GTS-in-CMake-builds.patch
+      - patches/0004-Fix-logic-for-finding-harfbuzz.patch
     # Prefer header only compat layer, even though m2-libtool might work
   - url: https://gitlab.com/graphviz/graphviz-windows-dependencies/-/raw/c7eafb3c/x64/include/ltdl.h
     sha256: a3cf376bca2965634ba05926d4065a46331e71c487d84a4c6aceb795e9458bfd
@@ -35,7 +32,7 @@ requirements:
     - automake                                            # [unix]
     - autoconf                                            # [unix]
     - cmake                                               # [win]
-    - ninja                                               # [win]
+    - ninja-base                                          # [win]
     - python >=3
     - m2-gawk                                             # [win]
     - m2-flex                                             # [win]
@@ -100,7 +97,7 @@ test:
     - sample.dot
 
 about:
-  home: http://www.graphviz.org/
+  home: https://www.graphviz.org/
   license: EPL-1.0
   license_family: Other
   license_file: COPYING
@@ -111,6 +108,7 @@ about:
     graphs and networks.
   doc_url: https://graphviz.gitlab.io/documentation/
   dev_url: https://gitlab.com/graphviz/graphviz/
+  doc_source_url: https://gitlab.com/graphviz/graphviz.gitlab.io
 
 extra:
   recipe-maintainers:

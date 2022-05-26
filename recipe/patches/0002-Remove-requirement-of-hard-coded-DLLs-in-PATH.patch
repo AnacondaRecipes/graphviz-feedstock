@@ -1,7 +1,7 @@
-From aa5213153352bb086e70a264603b805d37af6058 Mon Sep 17 00:00:00 2001
+From 6ebaa14330841b6f08efc326d3c95b82e3c9d0b3 Mon Sep 17 00:00:00 2001
 From: Nehal J Wani <nehaljw.kkd1@gmail.com>
 Date: Mon, 15 Feb 2021 18:07:41 -0500
-Subject: [PATCH 5/7] Remove requirement of hard coded DLLs in PATH
+Subject: [PATCH 2/4] Remove requirement of hard coded DLLs in PATH
 
 ---
  cmake/FindCairo.cmake      | 5 -----
@@ -9,10 +9,10 @@ Subject: [PATCH 5/7] Remove requirement of hard coded DLLs in PATH
  2 files changed, 13 deletions(-)
 
 diff --git a/cmake/FindCairo.cmake b/cmake/FindCairo.cmake
-index dce05ea96..3ac26b7a7 100644
+index a44f8682f..a2286edf9 100644
 --- a/cmake/FindCairo.cmake
 +++ b/cmake/FindCairo.cmake
-@@ -14,11 +14,6 @@ if (WIN32)
+@@ -14,11 +14,6 @@ if(WIN32)
          Cairo_INCLUDE_DIR
  
          Cairo_LIBRARY
@@ -25,10 +25,10 @@ index dce05ea96..3ac26b7a7 100644
  
      set(Cairo_INCLUDE_DIRS ${Cairo_INCLUDE_DIR})
 diff --git a/cmake/FindPangoCairo.cmake b/cmake/FindPangoCairo.cmake
-index 0937e41ef..69d82045b 100644
+index 96e692c8b..11eb31f84 100644
 --- a/cmake/FindPangoCairo.cmake
 +++ b/cmake/FindPangoCairo.cmake
-@@ -27,14 +27,6 @@ if (WIN32)
+@@ -27,14 +27,6 @@ if(WIN32)
          GOBJECT_LIBRARY
          PANGO_LIBRARY
          PangoCairo_LIBRARY
