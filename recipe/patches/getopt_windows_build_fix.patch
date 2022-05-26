@@ -1,0 +1,14 @@
+--- CMakeLists.txt	2022-02-26 17:11:28.000000000 +0000
++++ CMakeLists.txt	2022-04-22 12:34:29.181916800 +0100
+@@ -215,6 +215,11 @@
+ if(NOT HAVE_GETOPT_H)
+   find_package(GETOPT REQUIRED)
+ endif()
++if(NOT UNIX)
++  find_package(GETOPT REQUIRED)
++  add_link_options("${GETOPT_LIBRARY}")
++  	
++endif()
+ include_directories(${CMAKE_CURRENT_BINARY_DIR})
+ 
+ # ==================== Custom target for `make uninstall` ======================
