@@ -1,0 +1,6 @@
+cairo:
+  - 1.16.0
+harfbuzz:
+  - 4.3.0
+libgd:
+  - 2.3.3
