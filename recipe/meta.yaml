@@ -8,8 +8,7 @@ source:
   - url: https://gitlab.com/graphviz/graphviz/-/archive/{{ version }}/graphviz-{{ version }}.tar.gz
     sha256: afa48581f764a35e148909cc96a0308ec2356b5225b64af12492f3392f20ef1c
     patches:
-      #- patches/WinGetopt.patch # [win]; use getopt polyfill
-      #- patches/0001-Always-link-to-getopt-on-Windows.patch
+      - patches/0001-Always-link-to-getopt-on-Windows.patch
       - patches/0002-Remove-requirement-of-hard-coded-DLLs-in-PATH.patch
       - patches/0003-Add-support-for-GTS-in-CMake-builds.patch
       - patches/0004-Fix-logic-for-finding-harfbuzz.patch
@@ -78,14 +77,14 @@ requirements:
     # --enable-ltdl
     - libtool                                             # [unix]
     # --with-webp=yes
-    - libwebp-base
+    - libwebp-base                                        # [unix]
     # --with-pangocairo=yes
     - cairo
     - pango
     - glib
     # default requirement
-    - zlib
-
+    - zlib                                                # [unix]
+    - getopt-win32                                        # [win]
   run:
     # A few satisfy needs via run_exports, rest rely on pin_run_as_build
     # Add all of them anyway ¯\_(ツ)_/¯
@@ -94,11 +93,12 @@ requirements:
     - libgd
     - librsvg                                             # [unix]
     - libtool                                             # [unix]
-    - libwebp-base
+    - libwebp-base                                        # [unix]
     - cairo
     - pango
     - glib
-    - zlib
+    - zlib                                                # [unix]
+    - getopt-win32                                        # [win]
     - fonts-conda-ecosystem                               # [unix]
     # Not linked in directly, likely interface deps? add 'em anyway!
     - gdk-pixbuf                                          # [unix]
@@ -113,9 +113,7 @@ about:
   home: https://www.graphviz.org/
   license: EPL-1.0
   license_family: Other
-  license_file: 
-    - COPYING    
-    - getopt_LICENSE.txt  # [win]
+  license_file: COPYING    
   summary: Open Source graph visualization software.
   description: |
     Graphviz is an open source graph visualization software. Graph visualization

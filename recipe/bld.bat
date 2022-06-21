@@ -1,10 +1,7 @@
 @echo ON
 setlocal enabledelayedexpansion
 
-xcopy /I /F /Y %RECIPE_DIR%\getopt.h %SRC_DIR%\build
-
 :: Primary build
-:: using a getopt polyfill from the recipe folder
 set _gz_builddir=%SRC_DIR%\build
 cmake -S%SRC_DIR% ^
       -GNinja ^
@@ -14,8 +11,6 @@ cmake -S%SRC_DIR% ^
       -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=ON ^
       -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX%;%LIBRARY_LIB% ^
       -DLTDL_INCLUDE_DIR=%SRC_DIR%\ltdl_compat ^
-      -DCMAKE_REQUIRED_INCLUDES=%RECIPE_DIR% ^
-      -DGETOPT_INCLUDE_DIRS=%RECIPE_DIR% ^
       -Duse_win_pre_inst_libs=OFF ^
       -Dinstall_win_dependency_dlls=OFF
 if errorlevel 1 exit 1
