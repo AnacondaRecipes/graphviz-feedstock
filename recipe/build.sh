@@ -11,6 +11,8 @@ declare -a _xtra_config_flags
 if [[ ${target_platform} =~ .*osx.* ]]; then
     export OBJC="${CC}"
     _xtra_config_flags+=(--with-quartz)
+else
+    _xtra_config_flags+=(--with-gdk)
 fi
 
 export PKG_CONFIG_PATH_FOR_BUILD=$BUILD_PREFIX/lib/pkgconfig

@@ -72,6 +72,8 @@ requirements:
     - gdk-pixbuf                                          # [unix]
     # --with-libgd=yes
     - libgd
+    # --with-gdk=yes
+    - gtk2                                                # [linux]
     # --with-rsvg=yes
     - librsvg                                             # [unix]
     # --enable-ltdl
@@ -91,6 +93,7 @@ requirements:
     - expat                                               # [unix]
     - gts
     - libgd
+    - gtk2                                                # [linux]
     - librsvg                                             # [unix]
     - libtool                                             # [unix]
     - libwebp-base                                        # [unix]
