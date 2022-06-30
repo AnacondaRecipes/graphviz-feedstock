@@ -15,19 +15,19 @@ source:
     # Prefer header only compat layer, even though m2-libtool might work
   - url: https://gitlab.com/graphviz/graphviz-windows-dependencies/-/raw/c7eafb3c/x64/include/ltdl.h
     sha256: a3cf376bca2965634ba05926d4065a46331e71c487d84a4c6aceb795e9458bfd
-    folder: ltdl_compat   
+    folder: ltdl_compat
 
 build:
   number: 0
   detect_binary_files_with_prefix: true  # [unix]
-  missing_dso_whitelist:         # [linux and (x86_64 or s390x)]
-    - '**/libc.so.6'             # [linux and x86_64]
-    - '**/libpthread.so.0'       # [linux and x86_64]
-    - '**/libdl.so.2'            # [linux and x86_64]
-    - '**/librt.so.1'            # [linux and x86_64]
-    - '**/libm.so.6'             # [linux and x86_64]
-    - '**/ld-linux-x86-64.so.2'  # [linux and x86_64]
-    - '**/ld64.so.1'             # [linux and s390x]
+  missing_dso_whitelist:         # [linux]
+    - '**/libc.so.6'             # [linux]
+    - '**/libpthread.so.0'       # [linux]
+    - '**/libdl.so.2'            # [linux]
+    - '**/librt.so.1'            # [linux]
+    - '**/libm.so.6'             # [linux]
+    - '**/ld-linux-x86-64.so.2'  # [linux]
+    - '**/ld64.so.1'             # [linux]
   ignore_run_exports:
     - pixman
     - freetype
