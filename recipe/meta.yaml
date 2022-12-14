@@ -1,12 +1,14 @@
-{% set version = "2.50.0" %}
+{% set name = "graphviz" %}
+{% set version = "7.0.4" %}
+{% set sha256 = "85b74fa020984b7439c0373c88590a43a4a28934e54643afe8f18d32ae4bf438" %}
 
 package:
-  name: graphviz
+  name: {{ name }}
   version: {{ version }}
 
 source:
   - url: https://gitlab.com/graphviz/graphviz/-/archive/{{ version }}/graphviz-{{ version }}.tar.gz
-    sha256: afa48581f764a35e148909cc96a0308ec2356b5225b64af12492f3392f20ef1c
+    sha256: {{ sha256 }}
     patches:
       - patches/0001-Always-link-to-getopt-on-Windows.patch
       - patches/0002-Remove-requirement-of-hard-coded-DLLs-in-PATH.patch
@@ -124,7 +126,6 @@ about:
     graphs and networks.
   doc_url: https://graphviz.gitlab.io/documentation/
   dev_url: https://gitlab.com/graphviz/graphviz/
-  doc_source_url: https://gitlab.com/graphviz/graphviz.gitlab.io
 
 extra:
   recipe-maintainers:
