@@ -97,11 +97,11 @@ requirements:
     - glib
     - zlib                                                # [unix]
     - getopt-win32                                        # [win]
-    - fonts-conda-ecosystem                               # [unix]
+    - fonts-conda-ecosystem
     # Not linked in directly, likely interface deps? add 'em anyway!
     - gdk-pixbuf                                          # [unix]
-    - fontconfig                                          # [unix]
-    - freetype                                            # [unix]
+    - fontconfig
+    - freetype
 
 test:
   files:
