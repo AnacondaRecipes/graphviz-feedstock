@@ -18,7 +18,7 @@ source:
     folder: ltdl_compat
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true  # [unix]
   missing_dso_whitelist:         # [linux]
     - '**/libc.so.6'             # [linux]
@@ -28,11 +28,6 @@ build:
     - '**/libm.so.6'             # [linux]
     - '**/ld-linux-x86-64.so.2'  # [linux]
     - '**/ld64.so.1'             # [linux]
-  ignore_run_exports:
-    - pixman
-    - freetype
-    - fontconfig
-    - gdk-pixbuf
 
 requirements:
   build:
@@ -63,9 +58,9 @@ requirements:
     # --with-expat=yes
     - expat
     # --with-freetype2
-    - freetype                                            # [unix]
+    - freetype
     # --with-fontconfig=yes
-    - fontconfig                                          # [unix]
+    - fontconfig
     # --with-gts=yes
     - gts
     # --with-gdk-pixbuf=yes
