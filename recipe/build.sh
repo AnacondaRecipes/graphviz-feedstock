@@ -44,6 +44,7 @@ export PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}:${PREFIX}/lib/pkgconfig:$BUILD_PREFI
             --with-rsvg=yes \
             --with-expat=yes \
             --with-libgd=yes \
+            --with-poppler=yes \
             --with-freetype2=yes \
             --with-fontconfig=yes \
             --with-pangocairo=yes \

@@ -55,6 +55,8 @@ requirements:
     - {{ cdt('libx11-devel') }}                           # [linux]
     - {{ cdt('libxext-devel') }}                          # [linux]
   host:
+    # --with-poppler=yes
+    - poppler
     # --with-expat=yes
     - expat
     # --with-freetype2
@@ -102,6 +104,7 @@ requirements:
     - gdk-pixbuf                                          # [unix]
     - fontconfig
     - freetype
+    - poppler
 
 test:
   files:
