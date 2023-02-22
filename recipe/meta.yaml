@@ -45,7 +45,7 @@ requirements:
     - m2-gawk                                             # [win]
     - m2-flex                                             # [win]
     - m2-bison                                            # [win]
-    - perl                                                # [win]
+    - perl 5.*                                            # [win]
     - patch       # [not win]
     - m2-patch    # [win]
     - pthread-stubs                                       # [linux]
@@ -76,28 +76,28 @@ requirements:
     # --enable-ltdl
     - libtool                                             # [unix]
     # --with-webp=yes
-    - libwebp-base                                        # [unix]
+    - libwebp
+    - libwebp-base
     # --with-pangocairo=yes
     - cairo
     - pango
     - glib
     # default requirement
-    - zlib                                                # [unix]
+    - zlib
     - getopt-win32                                        # [win]
   run:
-    # A few satisfy needs via run_exports, rest rely on pin_run_as_build
-    # Add all of them anyway ¯\_(ツ)_/¯
-    - expat                                               # [unix]
+    - expat
     - gts
     - libgd
     - gtk2                                                # [linux]
     - librsvg                                             # [unix]
     - libtool                                             # [unix]
-    - libwebp-base                                        # [unix]
+    - libwebp
+    - libwebp-base
     - cairo
     - pango
     - glib
-    - zlib                                                # [unix]
+    - zlib
     - getopt-win32                                        # [win]
     - fonts-conda-ecosystem
     # Not linked in directly, likely interface deps? add 'em anyway!
