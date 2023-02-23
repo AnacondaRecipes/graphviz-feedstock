@@ -25,6 +25,9 @@ if [ "$(uname -m)" = "ppc64le" ]; then
   cp --force --archive --update --link $BUILD_PREFIX/powerpc64le-conda_cos7-linux-gnu/. $BUILD_PREFIX/powerpc64le-conda-linux-gnu
 fi
 
+export CFLAGS="${CFLAGS} -Wno-unused-parameter -Wno-conversion -Wno-cast-qual -Wno-shadow"
+export CFLAGS="${CFLAGS} -Wno-sign-conversion -Wno-float-equal -Wno-sign-compare"
+
 export PKG_CONFIG_PATH_FOR_BUILD=$BUILD_PREFIX/lib/pkgconfig
 export PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}:${PREFIX}/lib/pkgconfig:$BUILD_PREFIX/$BUILD/sysroot/usr/lib64/pkgconfig:$BUILD_PREFIX/$BUILD/sysroot/usr/share/pkgconfig
 
@@ -60,9 +63,6 @@ if [ $CONDA_BUILD_CROSS_COMPILATION = 1 ] && [ "${target_platform}" = "osx-arm64
     sed -i.bak 's/HOSTCC/CC_FOR_BUILD/g' $SRC_DIR/lib/gvpr/Makefile.am
     sed -i.bak '/dot$(EXEEXT) -c/d' $SRC_DIR/cmd/dot/Makefile.am
 fi
-
-export CFLAGS="${CFLAGS} -Wno-unused-parameter -Wno-conversion -Wno-cast-qual -Wno-shadow"
-export CFLAGS="${CFLAGS} -Wno-sign-conversion -Wno-float-equal -Wno-sign-compare"
 
 make
 # This is failing for rtest.
