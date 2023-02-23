@@ -25,11 +25,8 @@ if [ "$(uname -m)" = "ppc64le" ]; then
   cp --force --archive --update --link $BUILD_PREFIX/powerpc64le-conda_cos7-linux-gnu/. $BUILD_PREFIX/powerpc64le-conda-linux-gnu
 fi
 
-export CFLAGS="${CFLAGS} -Wno-unused-parameter -Wno-conversion -Wno-cast-qual -Wno-shadow"
-export CFLAGS="${CFLAGS} -Wno-sign-conversion -Wno-float-equal -Wno-sign-compare"
-
 export PKG_CONFIG_PATH_FOR_BUILD=$BUILD_PREFIX/lib/pkgconfig
-export PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}:${PREFIX}/lib/pkgconfig:$BUILD_PREFIX/$BUILD/sysroot/usr/lib64/pkgconfig:$BUILD_PREFIX/$BUILD/sysroot/usr/share/pkgconfig
+export PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}:${PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH_FOR_BUILD}:$BUILD_PREFIX/$BUILD/sysroot/usr/lib64/pkgconfig:$BUILD_PREFIX/$BUILD/sysroot/usr/share/pkgconfig
 
 # uncomment to help debug import errors regarding missing cdt
 # $BUILD_PREFIX/bin/pkg-config --exists --print-errors "pangocairo >= 1.14.9"
