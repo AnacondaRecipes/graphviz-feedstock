@@ -46,6 +46,7 @@ requirements:
     - m2-flex                                             # [win]
     - m2-bison                                            # [win]
     - perl 5.*                                            # [win]
+    - sed  # [not win]
     - patch       # [not win]
     - m2-patch    # [win]
     - pthread-stubs                                       # [linux]

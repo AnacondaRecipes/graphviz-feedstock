@@ -1,6 +1,11 @@
 #!/bin/bash
 set -x
 
+export SED=sed
+export EGREP="grep -E"
+export FGREP="grep -F"
+export GREP="grep"
+
 ./autogen.sh
 
 # remove libtool files
