@@ -62,6 +62,8 @@ if [ $CONDA_BUILD_CROSS_COMPILATION = 1 ] && [ "${target_platform}" = "osx-arm64
 fi
 
 export CFLAGS="${CFLAGS} -Wno-unused-parameter -Wno-conversion -Wno-cast-qual -Wno-shadow"
+export CFLAGS="${CFLAGS} -Wno-sign-conversion -Wno-float-equal -Wno-sign-compare"
+
 make
 # This is failing for rtest.
 # Doesn't do anything for the rest
