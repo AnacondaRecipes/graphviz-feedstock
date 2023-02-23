@@ -56,11 +56,6 @@ export PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}:${PREFIX}/lib/pkgconfig:${PKG_CONFIG
             --with-gdk-pixbuf=yes \
             "${_xtra_config_flags[@]}"
 
-if [ $CONDA_BUILD_CROSS_COMPILATION = 1 ] && [ "${target_platform}" = "osx-arm64" ]; then
-    sed -i.bak 's/HOSTCC/CC_FOR_BUILD/g' $SRC_DIR/lib/gvpr/Makefile.am
-    sed -i.bak '/dot$(EXEEXT) -c/d' $SRC_DIR/cmd/dot/Makefile.am
-fi
-
 make
 # This is failing for rtest.
 # Doesn't do anything for the rest
