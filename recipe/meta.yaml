@@ -76,7 +76,7 @@ requirements:
     # --enable-ltdl
     - libtool                                             # [unix]
     # --with-webp=yes
-    - libwebp
+    - libwebp 1.2.4
     - libwebp-base
     # --with-pangocairo=yes
     - cairo
