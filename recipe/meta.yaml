@@ -176,7 +176,6 @@ about:
     graphs and networks.
   doc_url: https://graphviz.gitlab.io/documentation/
   dev_url: https://gitlab.com/graphviz/graphviz/
-  doc_source_url: https://gitlab.com/graphviz/graphviz.gitlab.io
 
 extra:
   recipe-maintainers:
