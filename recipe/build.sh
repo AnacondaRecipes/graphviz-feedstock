@@ -5,6 +5,8 @@ export SED=sed
 export EGREP="grep -E"
 export FGREP="grep -F"
 export GREP="grep"
+export MKDIR="mkdir"
+export MKDIR_P="mkdir -p"
 
 ./autogen.sh
 
