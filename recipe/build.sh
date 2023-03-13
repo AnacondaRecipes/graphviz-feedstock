@@ -1,6 +1,15 @@
 #!/bin/bash
 set -x
 
+export SED=sed
+export EGREP="grep -E"
+export FGREP="grep -F"
+export GREP="grep"
+export MKDIR="mkdir"
+export MKDIR_P="mkdir -p"
+export SHELL=$(which bash)
+export MAKE="make"
+
 ./autogen.sh
 
 # remove libtool files
@@ -17,11 +26,14 @@ fi
 
 # ppc64le cdt need to be rebuilt with files in powerpc64le-conda-linux-gnu instead of powerpc64le-conda_cos7-linux-gnu. In the meantime:
 if [ "$(uname -m)" = "ppc64le" ]; then
-  cp --force --archive --update --link $BUILD_PREFIX/powerpc64le-conda_cos7-linux-gnu/. $BUILD_PREFIX/powerpc64le-conda-linux-gnu
+  pushd "${BUILD_PREFIX}"
+  cp -Rn powerpc64le-conda-linux-gnu/* powerpc64le-conda_cos7-linux-gnu/. || true
+  cp -Rn powerpc64le-conda_cos7-linux-gnu/* powerpc64le-conda-linux-gnu/. || true
+  popd
 fi
 
 export PKG_CONFIG_PATH_FOR_BUILD=$BUILD_PREFIX/lib/pkgconfig
-export PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}:${PREFIX}/lib/pkgconfig:$BUILD_PREFIX/$BUILD/sysroot/usr/lib64/pkgconfig:$BUILD_PREFIX/$BUILD/sysroot/usr/share/pkgconfig
+export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH_FOR_BUILD}:$BUILD_PREFIX/$BUILD/sysroot/usr/lib64/pkgconfig:$BUILD_PREFIX/$BUILD/sysroot/usr/share/pkgconfig
 
 # uncomment to help debug import errors regarding missing cdt
 # $BUILD_PREFIX/bin/pkg-config --exists --print-errors "pangocairo >= 1.14.9"
@@ -44,16 +56,12 @@ export PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}:${PREFIX}/lib/pkgconfig:$BUILD_PREFI
             --with-rsvg=yes \
             --with-expat=yes \
             --with-libgd=yes \
+            --with-poppler=yes \
             --with-freetype2=yes \
             --with-fontconfig=yes \
             --with-pangocairo=yes \
             --with-gdk-pixbuf=yes \
             "${_xtra_config_flags[@]}"
-
-if [ $CONDA_BUILD_CROSS_COMPILATION = 1 ] && [ "${target_platform}" = "osx-arm64" ]; then
-    sed -i.bak 's/HOSTCC/CC_FOR_BUILD/g' $SRC_DIR/lib/gvpr/Makefile.am
-    sed -i.bak '/dot$(EXEEXT) -c/d' $SRC_DIR/cmd/dot/Makefile.am
-fi
 
 make
 # This is failing for rtest.
