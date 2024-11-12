@@ -30,6 +30,10 @@ if [ "$(uname -m)" = "ppc64le" ]; then
   cp -Rn powerpc64le-conda-linux-gnu/* powerpc64le-conda_cos7-linux-gnu/. || true
   cp -Rn powerpc64le-conda_cos7-linux-gnu/* powerpc64le-conda-linux-gnu/. || true
   popd
+elif [ "$(uname -m)" = "s390x" ]; then
+  with_poppler="no"
+else
+  with_poppler="yes"
 fi
 
 export PKG_CONFIG_PATH_FOR_BUILD=$BUILD_PREFIX/lib/pkgconfig
@@ -56,7 +60,7 @@ export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${PREFIX}/lib/pkgconfig:${PKG_CONFIG_P
             --with-rsvg=yes \
             --with-expat=yes \
             --with-libgd=yes \
-            --with-poppler=yes \
+            --with-poppler=${with_poppler} \
             --with-freetype2=yes \
             --with-fontconfig=yes \
             --with-pangocairo=yes \

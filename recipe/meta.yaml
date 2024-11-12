@@ -18,7 +18,7 @@ source:
     folder: ltdl_compat
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true  # [unix]
   missing_dso_whitelist:         # [linux]
     - '**/libc.so.6'             # [linux]
@@ -110,11 +110,11 @@ requirements:
     - {{ cdt('libxext-devel') }}                          # [linux]
   host:
     # --with-poppler=yes
-    - poppler
+    - poppler 24.09  # [not s390x]
     # --with-expat=yes
     - expat
     # --with-freetype2
-    - freetype
+    - freetype 2.12.1
     # --with-fontconfig=yes
     - fontconfig
     # --with-gts=yes
@@ -158,7 +158,7 @@ requirements:
     - gdk-pixbuf                                          # [unix]
     - fontconfig
     - freetype
-    - poppler
+    - {{ pin_compatible('poppler', max_pin='x.x.x') }}    # [not s390x]
 
 test:
   files:
