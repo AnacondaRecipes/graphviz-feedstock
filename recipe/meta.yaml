@@ -1,4 +1,4 @@
-{% set version = "2.50.0" %}
+{% set version = "12.2.1" %}
 
 package:
   name: graphviz
@@ -6,7 +6,7 @@ package:
 
 source:
   - url: https://gitlab.com/graphviz/graphviz/-/archive/{{ version }}/graphviz-{{ version }}.tar.gz
-    sha256: afa48581f764a35e148909cc96a0308ec2356b5225b64af12492f3392f20ef1c
+    sha256: 91d444b4dabdaf5bfa7c6fcc3a1ee5d41e588af6079ebc030f0acb79e48a56ea
     patches:
       - patches/0001-Always-link-to-getopt-on-Windows.patch
       - patches/0002-Remove-requirement-of-hard-coded-DLLs-in-PATH.patch
@@ -168,7 +168,7 @@ about:
   home: https://www.graphviz.org/
   license: EPL-1.0
   license_family: Other
-  license_file: COPYING    
+  license_file: COPYING
   summary: Open Source graph visualization software.
   description: |
     Graphviz is an open source graph visualization software. Graph visualization
