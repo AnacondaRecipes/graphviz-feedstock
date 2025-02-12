@@ -18,7 +18,7 @@ source:
     folder: ltdl_compat
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true  # [unix]
   missing_dso_whitelist:         # [linux]
     - '**/libc.so.6'             # [linux]
