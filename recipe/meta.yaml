@@ -21,6 +21,9 @@ source:
 
 build:
   number: 0
+  # gkd-pixbuf -> libtiff -> liblzma (not a direct dep)
+  ignore_run_exports:                                     # [unix]
+    - liblzma                                             # [unix]
   detect_binary_files_with_prefix: true  # [unix]
   missing_dso_whitelist:         # [linux]
     - '**/libc.so.6'             # [linux]
@@ -126,7 +129,7 @@ requirements:
     # --with-libgd=yes
     - libgd
     # --with-gdk=yes
-    - gtk2                                                # [linux]
+    - gtk3                                                # [linux]
     # --with-rsvg=yes
     - librsvg                                             # [unix]
     # --enable-ltdl
