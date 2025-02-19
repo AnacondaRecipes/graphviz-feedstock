@@ -38,7 +38,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - pkg-config                                          # [unix]
+    - pkg-config
     - make                                                # [unix]
     - bison                                               # [unix]
     - libtool                                             # [unix]
