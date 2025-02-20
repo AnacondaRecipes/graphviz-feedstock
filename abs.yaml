@@ -1,3 +1,8 @@
+channels:
+  - https://staging.continuum.io/prefect/fs/gtk3-feedstock/pr7/8a0639c
+  - https://staging.continuum.io/prefect/fs/adwaita-icon-theme-feedstock/pr1/11ea1b5
+  - build
+
 # the conda-build parameters to use for disabling --skip-existing
 build_parameters:
   - "--suppress-variables"
