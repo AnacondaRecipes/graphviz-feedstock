@@ -28,7 +28,6 @@ fi
             --enable-ltdl \
             --without-x \
             --without-qt \
-            --without-gtk \
             --enable-ruby=no \
             --with-ann=no \
             --with-gts=yes \
