@@ -107,12 +107,13 @@ requirements:
     - {{ cdt('avahi-libs') }}            # [linux and not (ppc64le or s390x)]
     - {{ cdt('libgpg-error') }}          # [linux and not (ppc64le or s390x)]
     - {{ cdt('libtasn1') }}              # [linux and not (ppc64le or s390x)]
-
     - {{ cdt('libxau-devel') }}                           # [linux]
     - {{ cdt('xorg-x11-proto-devel') }}                   # [linux]
     - {{ cdt('libxrender-devel') }}                       # [linux]
     - {{ cdt('libx11-devel') }}                           # [linux]
     - {{ cdt('libxext-devel') }}                          # [linux]
+    - {{ cdt('libxinerama-devel') }}                      # [linux]
+
   host:
     # --with-poppler=yes
     - poppler 24.09  # [not s390x]
