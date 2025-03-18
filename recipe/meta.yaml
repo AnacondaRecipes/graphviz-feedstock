@@ -131,7 +131,7 @@ requirements:
     # --with-libgd=yes
     - libgd
     # --with-gdk=yes
-    - gtk3                                                # [linux]
+    - gtk2                                                # [linux]
     # --with-rsvg=yes
     - librsvg                                             # [unix]
     # --enable-ltdl
