@@ -20,6 +20,8 @@ source:
     folder: ltdl_compat
 
 build:
+  # gtk3 not available for s390x
+  skip: true  # [s390x]
   number: 0
   # gkd-pixbuf -> libtiff -> liblzma (not a direct dep)
   ignore_run_exports:                                     # [unix]
