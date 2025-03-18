@@ -127,7 +127,6 @@ requirements:
     - gts
     # --with-gdk-pixbuf=yes
     - gdk-pixbuf                                          # [unix]
-    - libtiff                                             # [unix]
     # --with-libgd=yes
     - libgd
     # --with-gdk=yes
