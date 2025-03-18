@@ -141,7 +141,7 @@ requirements:
     # --with-pangocairo=yes
     - cairo
     - pango
-    - glib
+    - libglib
     # default requirement
     - zlib
     - getopt-win32                                        # [win]
@@ -156,7 +156,7 @@ requirements:
     - libwebp-base
     - cairo
     - pango
-    - glib
+    - libglib
     - zlib
     - getopt-win32                                        # [win]
     - fonts-conda-ecosystem
