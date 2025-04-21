@@ -22,7 +22,7 @@ source:
 build:
   # gtk3 not available for s390x
   skip: true  # [s390x]
-  number: 0
+  number: 1
   # gkd-pixbuf -> libtiff -> liblzma (not a direct dep)
   ignore_run_exports:                                     # [unix]
     - liblzma                                             # [unix]
