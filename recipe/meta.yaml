@@ -20,12 +20,12 @@ source:
     folder: ltdl_compat
 
 build:
-  # gtk3 not available for s390x
-  skip: true  # [s390x]
-  number: 1
-  # gkd-pixbuf -> libtiff -> liblzma (not a direct dep)
-  ignore_run_exports:                                     # [unix]
-    - liblzma                                             # [unix]
+  number: 2
+  run_exports:
+    - {{ pin_subpackage('graphviz', max_pin='x') }}
+  ignore_run_exports:
+    - freetype
+    - fontconfig
   detect_binary_files_with_prefix: true  # [unix]
   missing_dso_whitelist:         # [linux]
     - '**/libc.so.6'             # [linux]
@@ -119,17 +119,17 @@ requirements:
     # --with-poppler=yes
     - poppler 24.09
     # --with-expat=yes
-    - expat
+    - expat {{ expat }}
     # --with-freetype2
-    - freetype 2.12.1
+    - freetype 2.13
     # --with-fontconfig=yes
-    - fontconfig
+    - fontconfig {{ fontconfig }}
     # --with-gts=yes
-    - gts
+    - gts 0.7
     # --with-gdk-pixbuf=yes
     - gdk-pixbuf                                          # [unix]
     # --with-libgd=yes
-    - libgd
+    - libgd {{ libgd }}
     # --with-gdk=yes
     - gtk3                                                # [linux]
     # --with-rsvg=yes
@@ -137,35 +137,36 @@ requirements:
     # --enable-ltdl
     - libtool                                             # [unix]
     # --with-webp=yes
-    - libwebp 1.2.4
-    - libwebp-base
+    - libwebp {{ libwebp }}
     # --with-pangocairo=yes
-    - cairo
-    - pango
-    - libglib
+    - cairo {{ cairo }}
+    - pango 1.50
+    - libglib {{ glib }}
     # default requirement
-    - zlib
+    - xz {{ xz }}
+    - zlib {{ zlib }}
     - getopt-win32                                        # [win]
+    - libtiff {{ libtiff }}
   run:
+    - libtool                                             # [unix]
+    - fonts-conda-ecosystem
+    - {{ pin_compatible('poppler', max_pin='x.x.x') }}
+    # Version set via run_exports.
     - expat
     - gts
     - libgd
     - gtk3                                                # [linux]
     - librsvg                                             # [unix]
-    - libtool                                             # [unix]
-    - libwebp
     - libwebp-base
     - cairo
     - pango
     - libglib
     - zlib
     - getopt-win32                                        # [win]
-    - fonts-conda-ecosystem
     # Not linked in directly, likely interface deps? add 'em anyway!
     - gdk-pixbuf                                          # [unix]
     - fontconfig
     - freetype
-    - {{ pin_compatible('poppler', max_pin='x.x.x') }}
 
 test:
   files:
