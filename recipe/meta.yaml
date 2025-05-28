@@ -19,12 +19,10 @@ source:
     folder: ltdl_compat
 
 build:
-  # gtk3 not available for s390x
-  skip: true  # [s390x]
   number: 3
   # gkd-pixbuf -> libtiff -> liblzma (not a direct dep)
-  ignore_run_exports:  # [unix]
-    - liblzma  # [unix]
+  ignore_run_exports:                                     # [unix]
+    - liblzma                                             # [unix]
   detect_binary_files_with_prefix: true  # [unix]
   missing_dso_whitelist:  # [linux]
     - "**/libc.so.6"  # [linux]
@@ -40,60 +38,24 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - pkg-config
-    - make  # [unix]
-    - bison  # [unix]
-    - libtool  # [unix]
-    - automake  # [unix]
-    - autoconf  # [unix]
-    - m4  # [unix]
-    - cmake  # [win]
-    - ninja-base  # [win]
+    - make                                          # [unix]
+    - bison                                         # [unix]
+    - libtool                                       # [unix]
+    - automake                                      # [unix]
+    - autoconf                                      # [unix]
+    - m4                                            # [unix]
+    - cmake                                         # [win]
+    - ninja-base                                    # [win]
     - python 3.9
-    - m2-gawk  # [win]
-    - m2-flex  # [win]
-    - m2-bison  # [win]
-    - perl 5.*  # [win]
-    - gawk  # [not win]
-    - sed  # [not win]
-    - patch  # [not win]
-    - m2-patch  # [win]
-    - pthread-stubs  # [linux]
-    # TODO: map CDT mesa-libegl to new X11 package
-    # - { cdt('mesa-libegl') }
-    # TODO: map CDT mesa-libgbm to new X11 package
-    # - { cdt('mesa-libgbm') }
-    # TODO: map CDT mesa-libegl-devel to new X11 package
-    # - { cdt('mesa-libegl-devel') }
-    # TODO: map CDT alsa-lib-devel to new X11 package
-    # - { cdt('alsa-lib-devel') }
-    # TODO: map CDT gtkmm24-devel to new X11 package
-    # - { cdt('gtkmm24-devel') }
-    # TODO: map CDT libdrm-devel to new X11 package
-    # - { cdt('libdrm-devel') }
-    # TODO: map CDT pciutils-devel to new X11 package
-    # - { cdt('pciutils-devel') }
-    # TODO: map CDT libselinux to new X11 package
-    # - { cdt('libselinux') }
-    # TODO: map CDT libselinux-devel to new X11 package
-    # - { cdt('libselinux-devel') }
-    # TODO: map CDT expat-devel to new X11 package
-    # - { cdt('expat-devel') }
-    # TODO: map CDT pcre to new X11 package
-    # - { cdt('pcre') }
-    # TODO: map CDT libxkbcommon-devel to new X11 package
-    # - { cdt('libxkbcommon-devel') }
-    # TODO: map CDT cups-devel to new X11 package
-    # - { cdt('cups-devel') }
-    # TODO: map CDT libcom_err to new X11 package
-    # - { cdt('libcom_err') }
-    # TODO: map CDT gnutls to new X11 package
-    # - { cdt('gnutls') }
-    # TODO: map CDT avahi-libs to new X11 package
-    # - { cdt('avahi-libs') }
-    # TODO: map CDT libgpg-error to new X11 package
-    # - { cdt('libgpg-error') }
-    # TODO: map CDT libtasn1 to new X11 package
-    # - { cdt('libtasn1') }
+    - m2-gawk                                       # [win]
+    - m2-flex                                       # [win]
+    - m2-bison                                      # [win]
+    - perl 5.*                                      # [win]
+    - gawk                                          # [not win]
+    - sed                                           # [not win]
+    - patch                                         # [not win]
+    - m2-patch                                      # [win]
+    - pthread-stubs                                 # [linux]
   host:
     # --with-poppler=yes
     - poppler 24.09
@@ -106,15 +68,15 @@ requirements:
     # --with-gts=yes
     - gts
     # --with-gdk-pixbuf=yes
-    - gdk-pixbuf  # [unix]
+    - gdk-pixbuf                                    # [unix]
     # --with-libgd=yes
     - libgd
     # --with-gdk=yes
-    - gtk3  # [linux]
+    - gtk3                                          # [linux]
     # --with-rsvg=yes
-    - librsvg  # [unix]
+    - librsvg                                       # [unix]
     # --enable-ltdl
-    - libtool  # [unix]
+    - libtool                                       # [unix]
     # --with-webp=yes
     - libwebp 1.2.4
     - libwebp-base
@@ -124,61 +86,53 @@ requirements:
     - libglib
     # default requirement
     - zlib
-    - getopt-win32  # [win]
-    - xorg-xproto
-    - xorg-libx11
-    - xorg-libxext
-    - xorg-libxext
-    - xorg-libxrender
-    - libgl-devel
-    - mesa-dri-drivers
-    - xorg-libxau
-    - xorg-libxcomposite
-    - xorg-libxcursor
-    - xorg-libxi
-    - xorg-libxrandr
-    - xorg-libxscrnsaver
-    - xorg-libxtst
-    - xorg-libxdamage
-    - xorg-libxdamage
-    - xorg-libxfixes
-    - xorg-libxfixes
-    - xorg-libxxf86vm
-    - xorg-libxxf86vm
-    - xorg-libsm
-    - xorg-libice
-    - libxcb
-    - libxcb
-    - libglx
-    - libegl
-    - xcb-util
-    - xcb-util-image
-    - xcb-util-keysyms
-    - xcb-util-renderutil
-    - xcb-util-wm
-    - xorg-libxinerama
-    - xorg-libxau
-    - xorg-xproto
-    - xorg-libxrender
-    - xorg-libx11
-    - xorg-libxext
+    - getopt-win32                                  # [win]
+    # X11 and graphics dependencies
+    - xorg-xorgproto                                # [linux]
+    - xorg-libx11                                   # [linux]
+    - xorg-libxext                                  # [linux]
+    - xorg-libxrender                               # [linux]
+    - xorg-libxau                                   # [linux]
+    - xorg-libxcomposite                            # [linux]
+    - xorg-libxcursor                               # [linux]
+    - xorg-libxi                                    # [linux]
+    - xorg-libxrandr                                # [linux]
+    - xorg-libxscrnsaver                            # [linux]
+    - xorg-libxtst                                  # [linux]
+    - xorg-libxdamage                               # [linux]
+    - xorg-libxfixes                                # [linux]
+    - xorg-libxxf86vm                               # [linux]
+    - xorg-libsm                                    # [linux]
+    - xorg-libice                                   # [linux]
+    - xorg-libxinerama                              # [linux]
+    - xorg-libxft                                   # [linux]
+    - libxcb                                        # [linux]
+    - libgl-devel                                   # [linux]
+    - libglx                                        # [linux]
+    - libegl                                        # [linux]
+    - mesalib-devel                                 # [linux]
+    - xcb-util                                      # [linux]
+    - xcb-util-image                                # [linux]
+    - xcb-util-keysyms                              # [linux]
+    - xcb-util-renderutil                           # [linux]
+    - xcb-util-wm                                   # [linux]
   run:
     - expat
     - gts
     - libgd
-    - gtk3  # [linux]
-    - librsvg  # [unix]
-    - libtool  # [unix]
+    - gtk3                                          # [linux]
+    - librsvg                                       # [unix]
+    - libtool                                       # [unix]
     - libwebp
     - libwebp-base
     - cairo
     - pango
     - libglib
     - zlib
-    - getopt-win32  # [win]
+    - getopt-win32                                  # [win]
     - fonts-conda-ecosystem
     # Not linked in directly, likely interface deps? add 'em anyway!
-    - gdk-pixbuf  # [unix]
+    - gdk-pixbuf                                    # [unix]
     - fontconfig
     - freetype
     - {{ pin_compatible('poppler', max_pin='x.x.x') }}
