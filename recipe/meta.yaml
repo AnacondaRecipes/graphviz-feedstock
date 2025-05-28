@@ -110,7 +110,7 @@ requirements:
     - libgl-devel                                   # [linux]
     - libglx                                        # [linux]
     - libegl                                        # [linux]
-    - mesalib-devel                                 # [linux]
+    - mesalib                                       # [linux]
     - xcb-util                                      # [linux]
     - xcb-util-image                                # [linux]
     - xcb-util-keysyms                              # [linux]
