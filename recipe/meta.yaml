@@ -58,64 +58,35 @@ requirements:
     - pthread-stubs                                 # [linux]
   host:
     # --with-poppler=yes
-    - poppler 24.09
+    - poppler {{ poppler }}
     # --with-expat=yes
-    - expat
+    - expat {{ expat }}
     # --with-freetype2
-    - freetype 2.12.1
+    - freetype {{ freetype }}
     # --with-fontconfig=yes
-    - fontconfig
+    - fontconfig {{ fontconfig }}
     # --with-gts=yes
-    - gts
+    - gts {{ gts }}
     # --with-gdk-pixbuf=yes
-    - gdk-pixbuf                                    # [unix]
+    - gdk-pixbuf {{ gdk_pixbuf }}                   # [unix]
     # --with-libgd=yes
-    - libgd
+    - libgd {{ libgd }}
     # --with-gdk=yes
-    - gtk3                                          # [linux]
+    - gtk3 {{ gtk3 }}                               # [linux]
     # --with-rsvg=yes
-    - librsvg                                       # [unix]
+    - librsvg {{ librsvg }}                         # [unix]
     # --enable-ltdl
-    - libtool                                       # [unix]
+    - libtool 2.4.7                                 # [unix]
     # --with-webp=yes
-    - libwebp 1.2.4
-    - libwebp-base
+    - libwebp {{ libwebp }}
+    - libwebp-base {{ libwebp_base }}
     # --with-pangocairo=yes
-    - cairo
-    - pango
-    - libglib
+    - cairo {{ cairo }}
+    - pango {{ pango }}
+    - libglib {{ libglib }}
     # default requirement
-    - zlib
-    - getopt-win32                                  # [win]
-    # X11 and graphics dependencies
-    - xorg-xorgproto                                # [linux]
-    - xorg-libx11                                   # [linux]
-    - xorg-libxext                                  # [linux]
-    - xorg-libxrender                               # [linux]
-    - xorg-libxau                                   # [linux]
-    - xorg-libxcomposite                            # [linux]
-    - xorg-libxcursor                               # [linux]
-    - xorg-libxi                                    # [linux]
-    - xorg-libxrandr                                # [linux]
-    - xorg-libxscrnsaver                            # [linux]
-    - xorg-libxtst                                  # [linux]
-    - xorg-libxdamage                               # [linux]
-    - xorg-libxfixes                                # [linux]
-    - xorg-libxxf86vm                               # [linux]
-    - xorg-libsm                                    # [linux]
-    - xorg-libice                                   # [linux]
-    - xorg-libxinerama                              # [linux]
-    - xorg-libxft                                   # [linux]
-    - libxcb                                        # [linux]
-    - libgl-devel                                   # [linux]
-    - libglx                                        # [linux]
-    - libegl                                        # [linux]
-    - mesalib                                       # [linux]
-    - xcb-util                                      # [linux]
-    - xcb-util-image                                # [linux]
-    - xcb-util-keysyms                              # [linux]
-    - xcb-util-renderutil                           # [linux]
-    - xcb-util-wm                                   # [linux]
+    - zlib {{ zlib }}
+    - getopt-win32 0.1                              # [win]
   run:
     - expat
     - gts
