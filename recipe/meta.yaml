@@ -75,6 +75,7 @@ requirements:
     - gtk3 {{ gtk3 }}                               # [linux]
     # --with-rsvg=yes
     - librsvg {{ librsvg }}                         # [unix]
+    # lib/libgvc.so.6.0.0 requires lib/libltdl.so.7
     # --enable-ltdl
     - libtool 2.4.7                                 # [unix]
     # --with-webp=yes
