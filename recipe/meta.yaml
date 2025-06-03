@@ -114,7 +114,7 @@ test:
     - sample.dot
 
 about:
-  home: https://www.graphviz.org/
+  home: https://www.graphviz.org
   license: EPL-1.0
   license_family: Other
   license_file: COPYING
@@ -123,8 +123,8 @@ about:
     Graphviz is an open source graph visualization software. Graph visualization
     is a way of representing structural information as diagrams of abstract
     graphs and networks.
-  doc_url: https://graphviz.gitlab.io/documentation/
-  dev_url: https://gitlab.com/graphviz/graphviz/
+  doc_url: https://graphviz.gitlab.io/documentation
+  dev_url: https://gitlab.com/graphviz/graphviz
 
 extra:
   recipe-maintainers:
