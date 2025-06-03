@@ -19,7 +19,7 @@ source:
     folder: ltdl_compat
 
 build:
-  number: 3
+  number: 2
   # gkd-pixbuf -> libtiff -> liblzma (not a direct dep)
   ignore_run_exports:                                     # [unix]
     - liblzma                                             # [unix]
@@ -58,7 +58,7 @@ requirements:
     - pthread-stubs                                 # [linux]
   host:
     # --with-poppler=yes
-    - poppler {{ poppler }}
+    - poppler 24.09
     # --with-expat=yes
     - expat {{ expat }}
     # --with-freetype2
