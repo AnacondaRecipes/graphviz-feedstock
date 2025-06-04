@@ -95,7 +95,6 @@ requirements:
     - gtk3                                          # [linux]
     - librsvg                                       # [unix]
     - libtool                                       # [unix]
-    - libwebp
     - libwebp-base
     - cairo
     - pango
