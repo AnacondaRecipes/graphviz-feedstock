@@ -9,8 +9,10 @@ export PKG_CONFIG_PATH=$PREFIX/share/pkgconfig:$PKG_CONFIG_PATH
 # remove libtool files
 find "$PREFIX" -name '*.la' -delete
 
+# https://github.com/conda-forge/conda-forge.github.io/issues/1880
+sed -i.bak '/Requires.private:/d' $PREFIX/lib/pkgconfig/librsvg*.pc
+
 declare -a _xtra_config_flags
-declare -a _xtra_make_args
 
 if [[ "${target_platform}" =~ .*osx.* ]]; then
     export OBJC="${CC}"
@@ -21,14 +23,22 @@ fi
 
 ./configure --prefix="$PREFIX" \
             --disable-debug \
-            --disable-java \
-            --disable-php \
-            --disable-perl \
-            --disable-tcl \
             --enable-ltdl \
             --without-x \
             --without-qt \
+            --without-gtk \
             --enable-ruby=no \
+            --enable-swig=no \
+            --enable-java=no \
+            --enable-php=no \
+            --enable-perl=no \
+            --enable-tcl=no \
+            --enable-python3=no \
+            --enable-lua=no \
+            --enable-go=no \
+            --enable-guile=no \
+            --enable-r=no \
+            --with-demos=no \
             --with-ann=no \
             --with-gts=yes \
             --with-gdk=yes \
@@ -36,25 +46,9 @@ fi
             --with-expat=yes \
             --with-libgd=yes \
             --with-freetype2=yes \
-            --with-fontconfig=yes \
             --with-pangocairo=yes \
             --with-gdk-pixbuf=yes \
             "${_xtra_config_flags[@]}"
 
-
-if [ "$CONDA_BUILD_CROSS_COMPILATION" = 1 ] && [ "${target_platform}" = "osx-arm64" ]; then
-    sed -i.bak 's/HOSTCC/CC_FOR_BUILD/g' "$SRC_DIR"/lib/gvpr/Makefile.am
-    # shellcheck disable=SC2016
-    sed -i.bak '/dot$(EXEEXT) -c/d' "$SRC_DIR"/cmd/dot/Makefile.am
-    _xtra_make_args+=(ARCH=arm64)
-fi
-make -j"${CPU_COUNT}" "${_xtra_make_args[@]}"
-# This is failing for rtest.
-# Doesn't do anything for the rest
-# make check
+make -j"${CPU_COUNT}"
 make install
-
-# Configure plugins
-if [ "$CONDA_BUILD_CROSS_COMPILATION" != 1 ]; then
-    "$PREFIX"/bin/dot -c
-fi

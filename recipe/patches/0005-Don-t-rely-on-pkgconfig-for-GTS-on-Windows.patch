@@ -1,4 +1,4 @@
-From 28c77ce15c55ed866065769b42e9d37d3bd65195 Mon Sep 17 00:00:00 2001
+From 7f201550b813812b66066b706a59bdaed4f4a009 Mon Sep 17 00:00:00 2001
 From: Nehal J Wani <nehaljw.kkd1@gmail.com>
 Date: Sun, 2 Feb 2025 18:04:50 +0000
 Subject: [PATCH 5/5] Don't rely on pkgconfig for GTS on Windows
@@ -23,17 +23,17 @@ index cc24e45a6..aa0248055 100644
 +
 +  find_library(GTS_LIBRARY NAMES gts)
 +  find_library(GLIB_LIBRARY NAMES glib-2.0)
-
+ 
 -  find_program(GTS_RUNTIME_LIBRARY NAMES gts.dll)
 +  find_program(GTS_RUNTIME_LIBRARY NAMES gts.dll libgts-0-7-5.dll)
 +  find_program(GLIB_RUNTIME_LIBRARY NAMES glib-2.dll libglib-2.0-0.dll)
-
+ 
    find_package_handle_standard_args(GTS DEFAULT_MSG
 -    GTS_INCLUDE_DIRS
 +    GTS_INCLUDE_DIR
 +    GLIB_INCLUDE_DIR
 +    GLIBCONFIG_INCLUDE_DIR
-
+ 
 -    GTS_LINK_LIBRARIES
 +    GTS_LIBRARY
 +    GLIB_LIBRARY
@@ -49,7 +49,7 @@ index cc24e45a6..aa0248055 100644
 +    ${GTS_LIBRARY}
 +    ${GLIB_LIBRARY}
    )
-
+ 
    set(GTS_RUNTIME_LIBRARIES
      ${GTS_RUNTIME_LIBRARY}
 -    ${GLIB_RUNTIME_LIBRARIES}
@@ -57,5 +57,6 @@ index cc24e45a6..aa0248055 100644
    )
  else()
    find_package_handle_standard_args(GTS DEFAULT_MSG
---
-2.47.1
+-- 
+2.50.0
+
