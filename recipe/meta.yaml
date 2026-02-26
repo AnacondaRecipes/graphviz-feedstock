@@ -43,9 +43,9 @@ requirements:
     - cmake                                               # [win]
     - ninja-base                                          # [win]
     - python >=3
-    - m2-gawk                                             # [win]
-    - m2-flex                                             # [win]
-    - m2-bison                                            # [win]
+    - msys2-gawk                                          # [win]
+    - msys2-flex                                          # [win]
+    - msys2-bison                                         # [win]
     - perl                                                # [win]
   host:
     - cairo {{ cairo }}
