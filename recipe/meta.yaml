@@ -24,6 +24,7 @@ requirements:
   build:
     - {{ stdlib("c") }}
     - {{ compiler('c') }}
+    # Graphviz contains C++ components (plugins/tests)
     - {{ compiler('cxx') }}
     - pkg-config
     - make                                                # [unix]
@@ -45,23 +46,35 @@ requirements:
     - expat {{ expat }}
     - libglib {{ libglib }}
     - gts {{ gts }}
-    - gdk-pixbuf {{ gdk_pixbuf }}                         # [unix]
-    - gtk3 {{ gtk3 }}                                     # [unix]
+    - gdk-pixbuf {{ gdk_pixbuf }}                         # [linux]
+    - gtk3 {{ gtk3 }}                                     # [linux]
     - libgd {{ libgd }}
     - librsvg {{ librsvg }}                               # [unix]
     - libwebp-base {{ libwebp_base }}
     - zlib {{ zlib }}
+    - freetype {{ freetype }}
+    - fontconfig {{ fontconfig }}
+    # Required to build gvplugin_gdk (GTK/GDK renderer) which provides TIFF via gdk-pixbuf.
+    # gdk-3.0.pc pulls epoxy.pc, which requires egl.pc; without EGL/GL pkg-config files
+    # the configure check for gdk-3.0 fails and gvplugin_gdk is disabled -> no -Ttiff.
+    - epoxy {{ epoxy }}                                   # [linux]
+    - libegl-devel                                        # [linux]
+    - libgl-devel                                         # [linux]
     # Windows only deps
     - getopt-win32                                        # [win]
   run:
-    - fonts-conda-ecosystem                               # [unix]
     - cairo
     - pango
     - libglib
     - gts
     - libgd
     - libwebp-base
-    - librsvg       # [unix]
+    - fontconfig
+    - freetype
+    - gtk3                                                # [linux]
+    - gdk-pixbuf                                          # [linux]
+    - librsvg                                             # [unix]
+    - fonts-conda-ecosystem                               # [unix]
 
 test:
   files:
@@ -71,8 +84,7 @@ test:
   #   - pydot
   #   - pydotplus
   #   - pygraphviz
-  #   - python-graphviz 0.16
-  #   - python-graphviz 0.20.1
+  #   - python-graphviz
 
 about:
   home: https://www.graphviz.org
