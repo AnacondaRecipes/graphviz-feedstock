@@ -21,6 +21,23 @@ if [[ "${target_platform}" =~ .*osx.* ]]; then
     _xtra_config_flags+=(--with-quartz)
 fi
 
+# -----------------------------------------------------------------------------
+# Suppress excessive warnings from legacy Graphviz C code.
+# Newer clang (macOS) and gcc emit many -Wsign-conversion, -Wfloat-equal, etc.
+# We explicitly disable the noisy warning classes.
+# -----------------------------------------------------------------------------
+export CFLAGS="${CFLAGS} -Wno-sign-conversion -Wno-float-equal -Wno-switch-default -Wno-unused-but-set-variable -Wno-cast-qual -Wno-bad-function-cast -Wno-implicit-int-float-conversion -Wno-implicit-int-conversion -Wno-shorten-64-to-32 -Wno-float-conversion -Wno-implicit-float-conversion -Wno-unused-parameter"
+
+# -----------------------------------------------------------------------------
+# Fix permission issues for Python code generators used during build.
+# Graphviz Makefiles try to execute these scripts directly.
+# In conda-build environments they may lack execute bit (0644),
+# which results in "Permission denied" (Error 126).
+# We explicitly mark them executable.
+# -----------------------------------------------------------------------------
+chmod +x "$SRC_DIR/lib/common/make_colortbl.py" \
+          "$SRC_DIR/lib/common/entities.py" || true
+
 ./configure --prefix="$PREFIX" \
             --disable-debug \
             --enable-ltdl \
