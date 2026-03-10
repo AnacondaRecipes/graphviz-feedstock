@@ -42,39 +42,39 @@ requirements:
     - python >=3
   host:
     - cairo {{ cairo }}
-    - pango {{ pango }}
+    - epoxy {{ epoxy }}                                   # [linux]
     - expat {{ expat }}
-    - libglib {{ libglib }}
-    - gts {{ gts }}
-    - gdk-pixbuf {{ gdk_pixbuf }}                         # [linux]
-    - gtk3 {{ gtk3 }}                                     # [linux]
-    - libgd {{ libgd }}
-    - librsvg {{ librsvg }}                               # [unix]
-    - libwebp-base {{ libwebp_base }}
-    - zlib {{ zlib }}
-    - freetype {{ freetype }}
     - fontconfig {{ fontconfig }}
+    - freetype {{ freetype }}
+    - gdk-pixbuf {{ gdk_pixbuf }}                         # [linux]
+    - gts {{ gts }}
+    - gtk3 {{ gtk3 }}                                     # [linux]
     # Required to build gvplugin_gdk (GTK/GDK renderer) which provides TIFF via gdk-pixbuf.
     # gdk-3.0.pc pulls epoxy.pc, which requires egl.pc; without EGL/GL pkg-config files
     # the configure check for gdk-3.0 fails and gvplugin_gdk is disabled -> no -Ttiff.
-    - epoxy {{ epoxy }}                                   # [linux]
-    - libegl-devel                                        # [linux]
-    - libgl-devel                                         # [linux]
+    - libegl-devel {{ libegl }}                           # [linux]
+    - libgl-devel {{ libgl }}                             # [linux]
+    - libgd {{ libgd }}
+    - libglib {{ libglib }}
+    - librsvg {{ librsvg }}                               # [unix]
+    - libwebp-base {{ libwebp_base }}
+    - pango {{ pango }}
+    - zlib {{ zlib }}
     # Windows only deps
-    - getopt-win32                                        # [win]
+    - getopt-win32 {{ getopt_win32 }}                     # [win]
   run:
     - cairo
-    - pango
-    - libglib
-    - gts
-    - libgd
-    - libwebp-base
     - fontconfig
-    - freetype
-    - gtk3                                                # [linux]
-    - gdk-pixbuf                                          # [linux]
-    - librsvg                                             # [unix]
     - fonts-conda-ecosystem                               # [unix]
+    - freetype
+    - gdk-pixbuf                                          # [linux]
+    - gts
+    - gtk3                                                # [linux]
+    - libgd
+    - libglib
+    - librsvg                                             # [unix]
+    - libwebp-base
+    - pango
 
 test:
   files:

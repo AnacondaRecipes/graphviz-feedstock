@@ -1,7 +1,7 @@
 :: Primary build
 set _gz_builddir=%SRC_DIR%\build
 
-mkdir ltdl_compat
+mkdir -p ltdl_compat
 copy "%RECIPE_DIR%\ltdl.h" "ltdl_compat\ltdl.h"
 
 cmake -S%SRC_DIR% ^
