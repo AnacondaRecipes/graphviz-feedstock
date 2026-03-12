@@ -26,7 +26,7 @@ requirements:
     - {{ compiler('c') }}
     # Graphviz contains C++ components (plugins/tests)
     - {{ compiler('cxx') }}
-    - pkg-config
+    - pkg-config                                          # [unix]
     - make                                                # [unix]
     - bison                                               # [unix]
     - libtool                                             # [unix]
@@ -35,6 +35,7 @@ requirements:
     - m4                                                  # [unix]
     - cmake                                               # [win]
     - ninja-base                                          # [win]
+    - msys2-pkgconf                                       # [win]
     - msys2-gawk                                          # [win]
     - msys2-flex                                          # [win]
     - msys2-bison                                         # [win]
@@ -79,6 +80,9 @@ requirements:
 test:
   files:
     - sample.dot
+    - check_graphviz_dlls.py
+    - probe_render_deps.py
+    - probe_png_matrix.py
 
   # downstreams:
   #   - pydot
