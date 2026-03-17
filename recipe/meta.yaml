@@ -80,9 +80,6 @@ requirements:
 test:
   files:
     - sample.dot
-    - check_graphviz_dlls.py
-    - probe_render_deps.py
-    - probe_png_matrix.py
 
   # downstreams:
   #   - pydot

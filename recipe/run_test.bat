@@ -136,74 +136,28 @@ REM ----------------------------
 REM Show formats (non-fatal)
 "%LIBRARY_BIN%\dot.exe" -T? || echo dot -T? failed (non-fatal)
 
-@REM REM ----------------------------
-@REM REM Render outputs
-@REM REM ----------------------------
-@REM @REM "%LIBRARY_BIN%\dot.exe" -Tpng  -o sample.png  sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Tpdf  -o sample.pdf  sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Tsvg  -o sample.svg  sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Tjpeg -o sample.jpeg sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Tgif  -o sample.gif  sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Ttiff -o sample.tiff sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Twebp -o sample.webp sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Teps  -o sample.eps  sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Tps   -o sample.ps   sample.dot || exit 1
-@REM "%LIBRARY_BIN%\dot.exe" -Tps2  -o sample.ps2  sample.dot || exit 1
+REM ----------------------------
+REM Render outputs
+REM ----------------------------
+"%LIBRARY_BIN%\dot.exe" -v8 -Tpng  -o sample.png  sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Tpdf  -o sample.pdf  sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Tsvg  -o sample.svg  sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Tjpeg -o sample.jpeg sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Tgif  -o sample.gif  sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Ttiff -o sample.tiff sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Twebp -o sample.webp sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Teps  -o sample.eps  sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Tps   -o sample.ps   sample.dot || exit 1
+"%LIBRARY_BIN%\dot.exe" -v8 -Tps2  -o sample.ps2  sample.dot || exit 1
 
-@REM "%LIBRARY_BIN%\sfdp.exe" -Tpdf -o sfdp.pdf sample.dot || exit 1
+"%LIBRARY_BIN%\sfdp.exe" -Tpdf -o sfdp.pdf sample.dot || exit 1
 
-@REM REM ----------------------------
-@REM REM Sanity: outputs are non-empty
-@REM REM ----------------------------
-@REM for %%F in (sample.png sample.pdf sample.svg sample.jpeg sample.gif sample.tiff sample.webp sample.eps sample.ps sample.ps2 sfdp.pdf) do (
-@REM   if not exist "%%F" exit 1
-@REM   for %%S in ("%%F") do if %%~zS LSS 1 exit 1
-@REM )
-
-
-
-REM --------------------------------------------------
-REM Diagnostics helper: show what exactly is missing
-REM --------------------------------------------------
-set "PATH=%PREFIX%\Library\bin;%PATH%"
-set "GVBINDIR=%PREFIX%\Library\bin"
-set "GVPLUGIN_PATH=%PREFIX%\Library\bin"
-
-echo ===== Graphviz binaries =====
-where dot
-where neato
-
-echo ===== Key Graphviz DLLs present? =====
-dir "%PREFIX%\Library\bin\gvc.dll"
-dir "%PREFIX%\Library\bin\gvplugin_gd.dll"
-dir "%PREFIX%\Library\bin\cairo-2.dll" 2>nul
-dir "%PREFIX%\Library\bin\libpng16.dll" 2>nul
-dir "%PREFIX%\Library\bin\zlib.dll" 2>nul
-
-echo ===== Plugin config files =====
-dir "%PREFIX%\Library\bin\config*" 2>nul
-
-echo ===== dot -c verbose =====
-"%PREFIX%\Library\bin\dot.exe" -c -v <NUL > dot_config.log 2>&1
-type dot_config.log
-
-
-set "PATH=%PREFIX%\Library\bin;%PATH%"
-set "GVBINDIR=%PREFIX%\Library\bin"
-set "GVPLUGIN_PATH=%PREFIX%\Library\bin"
-
-
-dot -Tcanon sample.dot -v8
-
-"%LIBRARY_BIN%\dot.exe" -v8 -Tpng  -o sample.png  sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Tpdf  -o sample.pdf  sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Tsvg  -o sample.svg  sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Tjpeg -o sample.jpeg sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Tgif  -o sample.gif  sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Ttiff -o sample.tiff sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Twebp -o sample.webp sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Teps  -o sample.eps  sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Tps   -o sample.ps   sample.dot
-"%LIBRARY_BIN%\dot.exe" -v8 -Tps2  -o sample.ps2  sample.dot
+REM ----------------------------
+REM Sanity: outputs are non-empty
+REM ----------------------------
+for %%F in (sample.png sample.pdf sample.svg sample.jpeg sample.gif sample.tiff sample.webp sample.eps sample.ps sample.ps2 sfdp.pdf) do (
+  if not exist "%%F" exit 1
+  for %%S in ("%%F") do if %%~zS LSS 1 exit 1
+)
 
 exit 0
