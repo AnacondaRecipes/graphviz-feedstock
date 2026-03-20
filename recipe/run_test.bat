@@ -161,3 +161,4 @@ for %%F in (sample.png sample.pdf sample.svg sample.jpeg sample.gif sample.tiff 
 )
 
 exit 0
+

@@ -1,0 +1,29 @@
+# This patch fixes this:
+# gvpr.c(965): error C4047: 'initializing': 'int' differs in levels of 
+# indirection from 'Agraph_t **'
+
+From 183142f52419969fb9c66c3747f127fb460bc65e Mon Sep 17 00:00:00 2001
+From: "Viacheslav Ch." <vchychyrko@anaconda.com>
+Date: Wed, 18 Mar 2026 17:43:18 +0200
+Subject: [PATCH] MSG
+
+---
+ lib/gvpr/gvpr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/gvpr/gvpr.c b/lib/gvpr/gvpr.c
+index 02f87b3..67555f3 100644
+--- a/lib/gvpr/gvpr.c
++++ b/lib/gvpr/gvpr.c
+@@ -962,7 +962,7 @@ static int gvpr_core(int argc, char *argv[], gvpropts *uopts,
+     }
+   }
+ 
+-  bool incoreGraphs = uopts->ingraphs;
++  bool incoreGraphs = (uopts->ingraphs != NULL);
+ 
+   if (gs->opts.verbose)
+     fprintf(stderr, "Parse/compile/init: %.2f secs.\n", elapsed_sec(start));
+-- 
+2.50.1 (Apple Git-155)
+
