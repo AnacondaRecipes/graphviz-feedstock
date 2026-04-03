@@ -1,5 +1,5 @@
 anaconda_config_version: 1
 upstream_sources:
   - webpage:
-      url: https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/{}/graphviz-{}.tar.gz
+      url: https://graphviz.org/download/source/
       regex: graphviz-([\d.]+)\.tar\.gz
