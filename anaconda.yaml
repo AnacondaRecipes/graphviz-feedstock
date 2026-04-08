@@ -2,3 +2,4 @@ anaconda_config_version: 1
 upstream_sources:
   - gitlab:
       identifier: graphviz/graphviz
+      use_max_tag: true
