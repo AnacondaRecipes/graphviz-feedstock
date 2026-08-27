@@ -57,7 +57,11 @@ requirements:
     - libegl-devel {{ libegl }}                           # [linux]
     - libgl-devel {{ libgl }}                             # [linux]
     - libgd {{ libgd }}
-    - libglib {{ libglib }}
+    # Full glib package: libglib ships no headers (only DLLs/import libs/.pc
+    # files); the glib output carries include/glib-2.0 + glibconfig.h, which
+    # pango headers require. win-64 currently gets them only by accident via
+    # the legacy gts -> glib run dependency; win-arm64 gts depends on libglib.
+    - glib {{ glib }}
     - librsvg {{ librsvg }}                               # [unix]
     - libwebp-base {{ libwebp_base }}
     - pango {{ pango }}
