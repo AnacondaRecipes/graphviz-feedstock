@@ -17,7 +17,7 @@ source:
       - patches/0006-win-fix-graph-input-parsing.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('graphviz', max_pin='x') }}
 
@@ -49,6 +49,7 @@ requirements:
     - fontconfig {{ fontconfig }}
     - freetype {{ freetype }}
     - gdk-pixbuf {{ gdk_pixbuf }}                         # [linux]
+    - glib {{ glib }}
     - gts {{ gts }}
     - gtk3 {{ gtk3 }}                                     # [linux]
     # Required to build gvplugin_gdk (GTK/GDK renderer) which provides TIFF via gdk-pixbuf.
